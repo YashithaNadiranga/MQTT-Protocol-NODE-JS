@@ -37,15 +37,14 @@ client.on('connect', function () {
 
 app.get("/on" , function(req,res){
     client.publish('LED', 'ON');
-    res.json("LED1-ON");
+    res.json("LEDON");
 });
 
 app.get("/off" , function(req,res){
     client.publish('LED', 'OFF');
-    res.json( "LED1-OFF");
+    res.json("LEDOFF");
 });
-
 // register "message" callback
 client.on('message', function (topic, message) {
-    console.log(topic + ': ' + message.toString());
+    // console.log(topic + ': ' + message.toString());
 });

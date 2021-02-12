@@ -14,12 +14,13 @@ class CardLayout extends Component {
     btnL1=()=>{
         fetch('http://192.168.1.101:8080/on').then((resp)=>{
             resp.json().then((result)=>{
-                if (result=="LED1-ON"){
+                if (result=="LEDON"){
                     this.setState({
                         l1 : result
                     })
+                    console.log(this.state.l1)
                 }
-                console.log(this.state.l1)
+
             })
         });
     }
@@ -27,12 +28,13 @@ class CardLayout extends Component {
     btnL2=()=>{
         fetch('http://192.168.1.101:8080/off').then((resp)=>{
             resp.json().then((result)=>{
-                if (result=="LED1-OFF"){
+                if (result=="LEDOFF"){
                     this.setState({
                         l1 : result
                     })
+                    console.log(this.state.l1)
                 }
-                console.log(this.state.l1)
+
             })
         });
     }
@@ -48,7 +50,7 @@ class CardLayout extends Component {
                             <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                 <button id={'led1'} type="button" style={{width:'100%'}}
                                         className="btn btn-primary mt-2" onClick={this.btnL1}>
-                                    {this.state.l1}
+                                    LIGHT 2 - ON
                                 </button>
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
