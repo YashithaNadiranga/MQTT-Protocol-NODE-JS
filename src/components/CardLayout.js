@@ -7,37 +7,64 @@ class CardLayout extends Component {
     constructor(props) {
         super(props);
         this.state ={
-            l1 :"LED 1",
+            l1 :"",
+            color:""
         }
     }
 
-    btnL1=()=>{
-        fetch('http://192.168.1.101:8080/on').then((resp)=>{
-            resp.json().then((result)=>{
-                if (result=="LEDON"){
-                    this.setState({
-                        l1 : result
-                    })
-                    console.log(this.state.l1)
-                }
 
+    btn=()=>{
+        if(this.state.l1==1){
+            fetch('http://192.168.1.101:8080/off').then((resp)=>{
+
+                resp.json().then((result)=>{
+                    console.log(result)
+                    if (result==0){
+                        this.setState({
+                            l1 : result,
+                            color:"danger"
+                        })
+                    }
+
+                })
+            });
+        }else if(this.state.l1==0){
+            fetch('http://192.168.1.101:8080/on').then((resp)=>{
+                resp.json().then((result)=>{
+                    console.log(result)
+                    if (result==1){
+                        this.setState({
+                            l1 : result,
+                            color:"primary"
+                        })
+                    }
+
+                })
+            });
+        }
+    }
+
+
+    componentDidMount() {
+        fetch('http://192.168.1.101:8080').then((resp)=>{
+            resp.json().then((result)=>{
+                if(result==1){
+                    this.setState({
+                        color:"primary",
+                        l1 : result
+                    });
+
+                }else if(result==0){
+                    this.setState({
+                        color:"danger",
+                        l1 : result
+                    });
+                }
             })
         });
     }
 
-    btnL2=()=>{
-        fetch('http://192.168.1.101:8080/off').then((resp)=>{
-            resp.json().then((result)=>{
-                if (result=="LEDOFF"){
-                    this.setState({
-                        l1 : result
-                    })
-                    console.log(this.state.l1)
-                }
 
-            })
-        });
-    }
 
     render() {
         return (
@@ -49,14 +76,8 @@ class CardLayout extends Component {
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
                                 <button id={'led1'} type="button" style={{width:'100%'}}
-                                        className="btn btn-primary mt-2" onClick={this.btnL1}>
-                                    LIGHT 2 - ON
-                                </button>
-                            </div>
-                            <div className="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
-                                <button type="button" style={{width:'100%'}}
-                                        className="btn btn-primary mt-2" onClick={this.btnL2}>
-                                        LIGHT 2 - OFF
+                                        className={"btn mt-2 btn-"+this.state.color} onClick={this.btn}>
+                                    LIGHT 1 {this.state.l1==1? "ON":"OFF"}
                                 </button>
                             </div>
                         </div>
