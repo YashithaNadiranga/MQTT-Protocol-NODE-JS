@@ -40,7 +40,7 @@ client.on('connect', function () {
             'SELECT * FROM `led_state`',
             function(err, results, fields) {
                 var msgs = (results[0].states);
-                client.publish('RADIO', msgs.toString());
+                client.publish('RADIO26574', msgs.toString());
             }
         );
     }, 1000);
@@ -48,7 +48,7 @@ client.on('connect', function () {
 app.get("/" , function(req,res){
     connection.query(
         'SELECT * FROM `led_state`',
-        function(err, results, fields) {
+        function(err, results) {
             res.json(results[0].states);
         }
     );
@@ -56,7 +56,7 @@ app.get("/" , function(req,res){
 });
 
 app.get("/on" , function(req,res){
-    client.publish('LED', 'ON');
+    client.publish('LED26574', 'ON');
     res.json(1);
     connection.query(
         'UPDATE `led_state` SET states = 1 where led=1',
@@ -64,7 +64,7 @@ app.get("/on" , function(req,res){
 });
 
 app.get("/off" , function(req,res){
-    client.publish('LED', 'OFF');
+    client.publish('LED26574', 'OFF');
     res.json(0);
     connection.query(
         'UPDATE `led_state` SET states = 0 where led=1',
