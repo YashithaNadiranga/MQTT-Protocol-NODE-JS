@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 var app = express();
 app.use(cors());
 const mysql = require('mysql2');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -13,9 +15,6 @@ const connection = mysql.createConnection({
     database: 'led'
 });
 
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 
 var server = app.listen(8080, '192.168.1.101',function () {
     console.log("app running on port.", server.address().port);
@@ -32,7 +31,7 @@ client.on('connect', function () {
     console.log('connected!');
 
     // subscribe to topic
-    // client.subscribe('ResponceLED');
+    client.subscribe('RESPONCELED26574');
 
     //publish message every second
     setInterval(function () {
@@ -72,5 +71,5 @@ app.get("/off" , function(req,res){
 });
 // register "message" callback
 client.on('message', function (topic, message) {
-    // console.log(topic + ': ' + message.toString());
+    console.log(topic + ': ' + message.toString());
 });

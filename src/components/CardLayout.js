@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import "./cardla.css";
-import {CircularProgress, LinearProgress} from "@material-ui/core";
+import {Button, CircularProgress, LinearProgress} from "@material-ui/core";
 
 
 class CardLayout extends Component {
@@ -9,7 +9,7 @@ class CardLayout extends Component {
         super(props);
         this.state ={
             l1 :"0",
-            color:"",
+            color:"secondary",
             connect :"NOT CONNECTED"
         }
     }
@@ -71,7 +71,6 @@ class CardLayout extends Component {
     render() {
         return (
             <div>
-
                 <div className="card">
                     <LinearProgress />
                     <div className="card-body shadow-sm">
@@ -83,6 +82,8 @@ class CardLayout extends Component {
                                         className={"btn mt-2 btn-"+this.state.color} onClick={this.btn}>
                                     LIGHT 1 {this.state.l1==1? "ON":"OFF"}
                                 </button>
+
+                                {/*<Button style={{width:"100%"}} disableElevation variant="contained" color={this.state.color}>Name</Button>*/}
 
                             </div>
                         </div>
