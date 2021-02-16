@@ -82,7 +82,6 @@ class CardLayout extends Component {
                                         className={"btn mt-2 btn-"+this.state.color} onClick={this.btn}>
                                     LIGHT 1 {this.state.l1==1? "ON":"OFF"}
                                 </button>
-
                             </div>
                         </div>
                     </div>
