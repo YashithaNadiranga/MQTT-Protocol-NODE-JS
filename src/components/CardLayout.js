@@ -83,8 +83,6 @@ class CardLayout extends Component {
                                     LIGHT 1 {this.state.l1==1? "ON":"OFF"}
                                 </button>
 
-                                {/*<Button style={{width:"100%"}} disableElevation variant="contained" color={this.state.color}>Name</Button>*/}
-
                             </div>
                         </div>
                     </div>
